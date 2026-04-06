@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import api from '../../services/api';
+import API from '../../services/api';
 import Card from '../../components/ui/Card';
 import Loader from '../../components/ui/Loader';
 
@@ -10,7 +10,7 @@ const AllApplicants = () => {
     useEffect(() => {
         const fetchAll = async () => {
             try {
-                const { data } = await api.get('/applications');
+                const { data } = await API.get('/api/applications');
                 setApplications(data || []);
             } catch (err) {
                 console.error('Failed to fetch all applications', err);
@@ -49,7 +49,7 @@ const AllApplicants = () => {
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 capitalize">{(app.status || 'applied').replace('_', ' ')}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">
                                     {app.resume ? (
-                                        <a href={`http://localhost:5000/${app.resume}`} target="_blank" rel="noreferrer">View</a>
+                                        <a href={`${import.meta.env.VITE_API_URL}/${app.resume}`} target="_blank" rel="noreferrer">View</a>
                                     ) : (
                                         '—'
                                     )}

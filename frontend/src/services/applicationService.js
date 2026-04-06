@@ -1,7 +1,7 @@
-import api from './api';
+import API from './api';
 
 const applyForJob = async (jobId, formData) => {
-    const { data } = await api.post(`/applications/${jobId}`, formData, {
+    const { data } = await API.post(`/api/applications/${jobId}`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -10,22 +10,22 @@ const applyForJob = async (jobId, formData) => {
 };
 
 const getMyApplications = async () => {
-    const { data } = await api.get('/applications/my');
+    const { data } = await API.get('/api/applications/my');
     return data;
 };
 
 const getJobApplications = async (jobId) => {
-    const { data } = await api.get(`/applications/job/${jobId}`);
+    const { data } = await API.get(`/api/applications/job/${jobId}`);
     return data;
 };
 
 const getEmployerApplications = async () => {
-    const { data } = await api.get('/applications/employer');
+    const { data } = await API.get('/api/applications/employer');
     return data;
 };
 
 const updateStatus = async (id, status) => {
-    const { data } = await api.put(`/applications/${id}/status`, { status });
+    const { data } = await API.put(`/api/applications/${id}/status`, { status });
     return data;
 };
 

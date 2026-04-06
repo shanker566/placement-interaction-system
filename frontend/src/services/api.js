@@ -1,19 +1,15 @@
 import axios from 'axios';
 
-// Use absolute backend URL in development to avoid occasional Vite proxy issues.
-const baseURL = (import.meta.env && import.meta.env.DEV)
-    ? 'http://localhost:5000/api'
-    : '/api';
-
-const api = axios.create({
-    baseURL,
+const API = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
 // Add a request interceptor
-api.interceptors.request.use(
+API.interceptors.request.use(
     (config) => {
         const userInfo = localStorage.getItem('userInfo');
         if (userInfo) {
@@ -30,7 +26,7 @@ api.interceptors.request.use(
 );
 
 // Add a response interceptor (optional: handle 401s)
-api.interceptors.response.use(
+API.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response) {
@@ -45,4 +41,4 @@ api.interceptors.response.use(
     }
 );
 
-export default api;
+export default API;

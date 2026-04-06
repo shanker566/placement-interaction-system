@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import api from '../../services/api'; // Direct API call for stats
+import API from '../../services/api'; // Direct API call for stats
 import Card from '../../components/ui/Card';
 import Loader from '../../components/ui/Loader';
 import BarChart from '../../components/charts/BarChart';
@@ -12,7 +12,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const { data } = await api.get('/admin/stats');
+                const { data } = await API.get('/api/admin/stats');
                 setStats(data);
             } catch (error) {
                 console.error('Failed to fetch stats');

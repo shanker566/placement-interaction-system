@@ -1,12 +1,12 @@
-import api from './api';
+import API from './api';
 
 const getProfile = async () => {
-    const { data } = await api.get('/users/profile');
+    const { data } = await API.get('/api/users/profile');
     return data;
 };
 
 const updateProfile = async (userData) => {
-    const { data } = await api.put('/users/profile', userData);
+    const { data } = await API.put('/api/users/profile', userData);
     // Update local storage if critical info changed
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const newUserInfo = { ...userInfo, ...data };
@@ -15,12 +15,12 @@ const updateProfile = async (userData) => {
 };
 
 const getAllUsers = async () => {
-    const { data } = await api.get('/users');
+    const { data } = await API.get('/api/users');
     return data;
 };
 
 const deleteUser = async (id) => {
-    const { data } = await api.delete(`/users/${id}`);
+    const { data } = await API.delete(`/api/users/${id}`);
     return data;
 };
 

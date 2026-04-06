@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import api from '../../services/api';
+import API from '../../services/api';
 import Card from '../../components/ui/Card';
 import Loader from '../../components/ui/Loader';
 
@@ -10,7 +10,7 @@ const PlacementRecords = () => {
     useEffect(() => {
         const fetchRecords = async () => {
             try {
-                const { data } = await api.get('/placement/records');
+                const { data } = await API.get('/api/placement/records');
                 setRecords(data);
             } catch (error) {
                 console.error("Failed to fetch records");

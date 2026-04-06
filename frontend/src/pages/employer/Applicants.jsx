@@ -164,7 +164,7 @@ const Applicants = () => {
                                 <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/5">
                                     <div className="flex gap-2">
                                         <a
-                                            href={`http://localhost:5000/${app.resume}`}
+                                            href={`${import.meta.env.VITE_API_URL}/${app.resume}`}
                                             target="_blank"
                                             rel="noreferrer"
                                             className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm transition-colors border border-gray-200 dark:border-white/5"

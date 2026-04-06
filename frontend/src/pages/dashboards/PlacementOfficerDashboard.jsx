@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import api from '../../services/api';
+import API from '../../services/api';
 import Card from '../../components/ui/Card';
 import Loader from '../../components/ui/Loader';
 import PieChart from '../../components/charts/PieChart';
@@ -11,7 +11,7 @@ const PlacementOfficerDashboard = () => {
     useEffect(() => {
         const fetchAnalytics = async () => {
             try {
-                const { data } = await api.get('/placement/analytics');
+                const { data } = await API.get('/api/placement/analytics');
                 setAnalytics(data);
             } catch (error) {
                 console.error('Failed to fetch analytics');

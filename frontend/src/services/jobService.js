@@ -1,4 +1,4 @@
-import api from './api';
+import API from './api';
 
 const getJobs = async (keyword = '', pageNumber = '', filters = {}) => {
     const queryParams = new URLSearchParams({
@@ -6,32 +6,32 @@ const getJobs = async (keyword = '', pageNumber = '', filters = {}) => {
         pageNumber,
         ...filters
     }).toString();
-    const { data } = await api.get(`/jobs?${queryParams}`);
+    const { data } = await API.get(`/api/jobs?${queryParams}`);
     return data;
 };
 
 const getJobById = async (id) => {
-    const { data } = await api.get(`/jobs/${id}`);
+    const { data } = await API.get(`/api/jobs/${id}`);
     return data;
 };
 
 const createJob = async (jobData) => {
-    const { data } = await api.post('/jobs', jobData);
+    const { data } = await API.post('/api/jobs', jobData);
     return data;
 };
 
 const updateJob = async (id, jobData) => {
-    const { data } = await api.put(`/jobs/${id}`, jobData);
+    const { data } = await API.put(`/api/jobs/${id}`, jobData);
     return data;
 };
 
 const deleteJob = async (id) => {
-    const { data } = await api.delete(`/jobs/${id}`);
+    const { data } = await API.delete(`/api/jobs/${id}`);
     return data;
 };
 
 const getMyJobs = async () => {
-    const { data } = await api.get('/jobs/myjobs');
+    const { data } = await API.get('/api/jobs/myjobs');
     return data;
 };
 
