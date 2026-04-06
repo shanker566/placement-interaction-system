@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import {
     LayoutDashboard,
@@ -14,6 +14,12 @@ import ThemeToggle from '../common/ThemeToggle';
 const StudentNavbar = () => {
     const { user, logout } = useAuth();
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();          // clears 'userInfo' from localStorage & resets user state
+        navigate('/login');
+    };
 
     const isActive = (path) => {
         return location.pathname === path;
@@ -51,10 +57,7 @@ const StudentNavbar = () => {
                         </div>
 
                         <button
-                            onClick={() => {
-                                localStorage.removeItem("token");
-                                window.location.href = "/login";
-                            }}
+                            onClick={handleLogout}
                             className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors flex items-center justify-center ml-2"
                             title="Logout"
                         >

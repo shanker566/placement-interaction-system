@@ -10,7 +10,7 @@ const PlacementRecords = () => {
     useEffect(() => {
         const fetchRecords = async () => {
             try {
-                const { data } = await API.get('/api/placement/records');
+                const { data } = await API.get('/placement/records');
                 setRecords(data);
             } catch (error) {
                 console.error("Failed to fetch records");

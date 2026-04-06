@@ -164,8 +164,8 @@ Feel free to check the [issues page](https://github.com/your-username/placement-
 
 ---
 studnet login
-email: <2400080086@gmail.com>
-passwrod: 2400080086
+email: <2400080100@gmail.com>
+passwrod: 2400080100
 emplyee login
 email: <2400080087@kluniversity.in>
 pass: 2400080087
