@@ -1,6 +1,6 @@
 # PlacementPortal (Placement Interaction System)
 
-A comprehensive, next-generation MERN stack platform designed to streamline campus placements by seamlessly connecting Students, Employers, Placement Officers, and Administrators.
+A comprehensive, next-generation platform designed to streamline campus placements by seamlessly connecting Students, Employers, Placement Officers, and Administrators.
 
 ---
 
@@ -12,7 +12,7 @@ PlacementPortal digitizes the entire placement lifecycle. It replaces traditiona
 
 ## 🛠️ Tech Stack
 
-This project is built using the **MERN** stack, augmented with modern tooling for a premium user experience:
+This project is built using **React, Spring Boot, and MySQL**, augmented with modern tooling for a premium user experience:
 
 ### **Frontend**
 
@@ -26,12 +26,11 @@ This project is built using the **MERN** stack, augmented with modern tooling fo
 
 ### **Backend**
 
-- **Node.js & Express.js**: Fast, minimalist web framework for building the RESTful API.
-- **MongoDB & Mongoose**: NoSQL database for flexible data modeling and robust schema validation.
-- **JSON Web Tokens (JWT)**: Secure, stateless user authentication and role-based authorization.
-- **Bcrypt.js**: Advanced password hashing and security.
-- **Nodemailer**: For robust email delivery, including OTP (One-Time Password) verification during registration and password resets.
-- **Multer**: Middleware for handling `multipart/form-data`, ensuring smooth and secure resume (PDF/DOC) uploads.
+- **Java & Spring Boot**: Robust, enterprise-grade framework for building the RESTful API.
+- **MySQL & Spring Data JPA**: Relational database with automated ORM for structured data modeling.
+- **Spring Security & JWT**: Secure, stateless user authentication, password hashing (BCrypt), and role-based authorization.
+- **Spring Mail**: For robust email delivery, including OTP (One-Time Password) verification during registration.
+- **Spring Web Multipart**: Built-in support for handling `multipart/form-data`, ensuring smooth and secure resume (PDF/DOC) uploads.
 
 ---
 
@@ -81,8 +80,9 @@ The platform defines four distinct user personas:
 
 ### Prerequisites
 
-- **Node.js** (v16.0 or higher)
-- **MongoDB** (Local instance or MongoDB Atlas cluster)
+- **Java Development Kit (JDK)** (v17 or higher)
+- **MySQL Server**
+- **Node.js** (v16.0 or higher, for the frontend)
 - **Git**
 
 ### 1. Clone the Repository
@@ -95,28 +95,28 @@ cd placement-interaction-system
 ### 2. Backend Setup
 
 ```bash
-cd backend
-npm install
+cd backend-java
 ```
 
-**Configure Environment Variables (`backend/.env`):**
-Create a `.env` file in the root of the `backend` directory:
+**Configure Properties (`backend-java/src/main/resources/application.properties`):**
+Ensure your MySQL credentials match what is in the properties file:
 
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_super_secret_jwt_key
-EMAIL_USER=your_gmail_address@gmail.com
-EMAIL_PASS=your_gmail_app_password
-FRONTEND_URL=http://localhost:5173
+```properties
+server.port=5000
+spring.datasource.url=jdbc:mysql://localhost:3306/placement_portal?createDatabaseIfNotExist=true&useSSL=false
+spring.datasource.username=root
+spring.datasource.password=your_mysql_password
+jwt.secret=your_super_secret_jwt_key
 ```
 
-*(Note: To use Nodemailer with Gmail, you must generate an "App Password" in your Google Account Security settings).*
-
-**Run the Server:**
+**Run the Server using Maven Wrapper:**
 
 ```bash
-npm run dev
+# On Windows
+.\mvnw.cmd spring-boot:run
+
+# On Mac/Linux
+./mvnw spring-boot:run
 ```
 
 ### 3. Frontend Setup
@@ -140,14 +140,13 @@ The application will be available at `http://localhost:5173`.
 
 ## 🔑 Accessing Elevated Roles
 
-By default, the registration page creates `Student` or `Employer` accounts. To access the **Admin** or **Placement Officer** dashboards in your local environment, you must manually update a registered user's role in your MongoDB database:
+By default, the registration page creates `Student` or `Employer` accounts. To access the **Admin** or **Placement Officer** dashboards in your local environment, you must manually update a registered user's role in your MySQL database:
 
-```javascript
-// Connect to MongoDB shell or use MongoDB Compass and execute:
-db.users.updateOne(
-  { email: "your@email.com" }, 
-  { $set: { role: "admin" } } // or "placement_officer"
-)
+```sql
+-- Connect to MySQL shell or use a GUI client (like MySQL Workbench) and execute:
+UPDATE users 
+SET role = 'admin' -- or 'placement_officer'
+WHERE email = 'your@email.com';
 ```
 
 ---
@@ -164,5 +163,11 @@ Feel free to check the [issues page](https://github.com/your-username/placement-
 5. Open a Pull Request
 
 ---
+studnet login
+email: <2400080086@gmail.com>
+passwrod: 2400080086
+emplyee login
+email: <2400080087@kluniversity.in>
+pass: 2400080087
 
 *Built with ❤️ for the next generation of professionals.*

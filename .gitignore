@@ -54,3 +54,19 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# =========================
+# Java / Spring Boot
+# =========================
+target/
+backend-java/target/
+*.jar
+*.war
+*.class
+.mvn/
+
+# =========================
+# Debugging & Temp Files
+# =========================
+*.txt
+app.log
